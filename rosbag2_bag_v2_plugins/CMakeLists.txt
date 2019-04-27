@@ -125,7 +125,6 @@ ament_export_libraries(${PROJECT_NAME})
 ament_export_dependencies(rosbag2_storage)
 ament_export_dependencies(rosbag2 ros1_rosbag_storage rosbag2_storage)
 
-
 if(BUILD_TESTING)
   find_package(ament_cmake_gmock REQUIRED)
   find_package(ament_lint_auto REQUIRED)
@@ -157,6 +156,28 @@ if(BUILD_TESTING)
     target_link_libraries(test_rosbag_output_stream ${PROJECT_NAME})
     ament_target_dependencies(test_rosbag_output_stream
       rosbag2_test_common)
+  endif()
+
+  ament_add_gmock(test_rosbag2_play_rosbag_v2_end_to_end
+    test/rosbag2_bag_v2_plugins/test_rosbag2_play_rosbag_v2_end_to_end.cpp
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+  if(TARGET test_rosbag2_play_rosbag_v2_end_to_end)
+    ament_target_dependencies(test_rosbag2_play_rosbag_v2_end_to_end
+      rosbag2_storage
+      rclcpp
+      rosbag2_test_common
+      std_msgs)
+  endif()
+
+  ament_add_gmock(test_rosbag2_info_rosbag_v2_end_to_end
+    test/rosbag2_bag_v2_plugins/test_rosbag2_info_rosbag_v2_end_to_end.cpp
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+  if(TARGET test_rosbag2_info_rosbag_v2_end_to_end)
+    ament_target_dependencies(test_rosbag2_info_rosbag_v2_end_to_end
+      rosbag2_storage
+      rclcpp
+      rosbag2_test_common
+      std_msgs)
   endif()
 endif()
 
