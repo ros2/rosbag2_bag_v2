@@ -51,7 +51,7 @@ set(generated_files "${generated_path}/convert_rosbag_message.cpp")
 
 add_custom_command(
   OUTPUT ${generated_files}
-  COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/src/generate_coverter_cpp.py
+  COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/src/generate_converter_cpp.py
   --output-path "${generated_path}" --template-dir ${CMAKE_CURRENT_SOURCE_DIR}/src/rosbag2_bag_v2_plugins
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
