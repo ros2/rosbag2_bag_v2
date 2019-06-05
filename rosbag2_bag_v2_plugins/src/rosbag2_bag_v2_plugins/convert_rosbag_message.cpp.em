@@ -60,7 +60,7 @@ convert_1_to_2(
 
   @[for m in mappings]@
   if (ros1_type_name == "@(m.ros1_msg.package_name)/@(m.ros1_msg.message_name)"
-    && ros2_type_name == "@(m.ros2_msg.package_name)/@(m.ros2_msg.message_name)")
+    && ros2_type_name == "@(m.ros2_msg.package_name)/msg/@(m.ros2_msg.message_name)")
   {
     @(m.ros1_msg.package_name)::@(m.ros1_msg.message_name) typed_ros1_message;
 
@@ -70,7 +70,7 @@ convert_1_to_2(
 
     auto factory = ros1_bridge::get_factory(
       "@(m.ros1_msg.package_name)/@(m.ros1_msg.message_name)",
-      "@(m.ros2_msg.package_name)/@(m.ros2_msg.message_name)");
+      "@(m.ros2_msg.package_name)/msg/@(m.ros2_msg.message_name)");
     factory->convert_1_to_2(&typed_ros1_message, ros2_message->message);
   }
   @[end for]@

@@ -17,6 +17,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "rosbag/message_instance.h"
 
@@ -92,10 +93,11 @@ std::vector<rosbag2_storage::TopicMetadata> RosbagV2Storage::get_all_topics_and_
   auto topics_with_type_including_ros1 = get_all_topics_and_types_including_ros1_topics();
 
   std::vector<rosbag2_storage::TopicMetadata> topics_with_type;
-  for (const auto & topic_with_type : topics_with_type_including_ros1) {
+  for (auto topic_with_type : topics_with_type_including_ros1) {
     std::string ros2_type_name;
     if (get_1to2_mapping(topic_with_type.type, ros2_type_name)) {
-      topics_with_type.push_back(topic_with_type);
+      topic_with_type.type = ros2_type_name;
+      topics_with_type.push_back(std::move(topic_with_type));
     }
   }
 
@@ -125,7 +127,7 @@ rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
 std::vector<rosbag2_storage::TopicInformation> RosbagV2Storage::get_topic_information()
 {
   std::vector<rosbag2_storage::TopicInformation> topic_information;
-  auto topics_with_type = get_all_topics_and_types_including_ros1_topics();
+  auto topics_with_type = get_all_topics_and_types();
 
   for (const auto & topic : topics_with_type) {
     rosbag2_storage::TopicInformation topic_info;
