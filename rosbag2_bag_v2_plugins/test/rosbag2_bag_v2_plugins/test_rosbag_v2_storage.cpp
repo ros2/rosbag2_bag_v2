@@ -50,23 +50,28 @@ bool operator!=(const TopicInformation & lhs, const TopicInformation & rhs)
 
 TEST_F(RosbagV2StorageTestFixture, get_all_topics_and_types_returns_list_of_recorded_bag_file) {
   std::vector<rosbag2_storage::TopicMetadata> expected_topic_metadata = {
-    {"/test_topic", "std_msgs/String", "rosbag_v2"},
-    {"/test_topic2", "std_msgs/String", "rosbag_v2"},
+    {"/rosout", "rcl_interfaces/msg/Log", "rosbag_v2"},
+    {"/test_topic", "std_msgs/msg/String", "rosbag_v2"},
+    {"/test_topic2", "std_msgs/msg/String", "rosbag_v2"},
   };
 
   auto topic_metadata = storage_->get_all_topics_and_types();
 
-  for (size_t i = 0; i < expected_topic_metadata.size(); ++i) {
-    EXPECT_THAT(topic_metadata[i], expected_topic_metadata[i]);
+  for (size_t i = 0; i < topic_metadata.size(); ++i) {
+    EXPECT_STREQ(expected_topic_metadata[i].name.c_str(), topic_metadata[i].name.c_str());
+    EXPECT_STREQ(expected_topic_metadata[i].type.c_str(), topic_metadata[i].type.c_str());
+    EXPECT_STREQ(
+      expected_topic_metadata[i].serialization_format.c_str(),
+      topic_metadata[i].serialization_format.c_str());
   }
 }
 
 TEST_F(RosbagV2StorageTestFixture, get_metadata_returns_bagfile_description)
 {
   std::vector<rosbag2_storage::TopicInformation> expected_topics_with_message_count = {
-    {{"/rosout", "rosgraph_msgs/Log", "rosbag_v2"}, 3},
-    {{"/test_topic", "std_msgs/String", "rosbag_v2"}, 1},
-    {{"/test_topic2", "std_msgs/String", "rosbag_v2"}, 1}
+    {{"/rosout", "rcl_interfaces/msg/Log", "rosbag_v2"}, 3},
+    {{"/test_topic", "std_msgs/msg/String", "rosbag_v2"}, 1},
+    {{"/test_topic2", "std_msgs/msg/String", "rosbag_v2"}, 1}
   };
 
   auto bag_metadata = storage_->get_metadata();
@@ -82,32 +87,28 @@ TEST_F(RosbagV2StorageTestFixture, get_metadata_returns_bagfile_description)
   EXPECT_THAT(
     bag_metadata.topics_with_message_count, SizeIs(expected_topics_with_message_count.size()));
   for (size_t i = 0; i < expected_topics_with_message_count.size(); ++i) {
-    EXPECT_THAT(
-      bag_metadata.topics_with_message_count[i], Eq(expected_topics_with_message_count[i]));
+    EXPECT_STREQ(
+      expected_topics_with_message_count[i].topic_metadata.name.c_str(),
+      bag_metadata.topics_with_message_count[i].topic_metadata.name.c_str());
+    EXPECT_STREQ(
+      expected_topics_with_message_count[i].topic_metadata.type.c_str(),
+      bag_metadata.topics_with_message_count[i].topic_metadata.type.c_str());
+    EXPECT_STREQ(
+      expected_topics_with_message_count[i].topic_metadata.serialization_format.c_str(),
+      bag_metadata.topics_with_message_count[i].topic_metadata.serialization_format.c_str());
   }
 }
 
 TEST_F(RosbagV2StorageTestFixture, has_next_only_counts_messages_with_ros2_counterpart)
 {
   // There are only two messages that can be read
-  EXPECT_TRUE(storage_->has_next());
-  storage_->read_next();
-  EXPECT_TRUE(storage_->has_next());
-  storage_->read_next();
+  auto n = storage_->get_metadata().message_count;
+  for (size_t i = 0; i < n; ++i) {
+    EXPECT_TRUE(storage_->has_next());
+    storage_->read_next();
+  }
   EXPECT_FALSE(storage_->has_next());
   EXPECT_FALSE(storage_->has_next());  // Once false, it stays false
-}
-
-TEST_F(RosbagV2StorageTestFixture, read_next_will_not_read_messages_without_ros2_equivalent)
-{
-  EXPECT_TRUE(storage_->has_next());
-  auto first_message = storage_->read_next();
-
-  EXPECT_TRUE(storage_->has_next());
-  auto second_message = storage_->read_next();
-
-  EXPECT_THAT(first_message->topic_name, StrEq("/test_topic"));
-  EXPECT_THAT(second_message->topic_name, StrEq("/test_topic2"));
 }
 
 TEST_F(RosbagV2StorageTestFixture, read_next_will_produce_messages_ordered_by_timestamp)
@@ -130,8 +131,9 @@ TEST_F(RosbagV2StorageTestFixture, get_topics_and_types_will_only_return_one_ent
   storage_->open(bag_path_, rosbag2_storage::storage_interfaces::IOFlag::READ_ONLY);
 
   std::vector<rosbag2_storage::TopicMetadata> expected_topic_metadata = {
-    {"/test_topic", "std_msgs/String", "rosbag_v2"},
-    {"/int_test_topic", "std_msgs/Int32", "rosbag_v2"},
+    {"/rosout", "rcl_interfaces/msg/Log", "rosbag_v2"},
+    {"/test_topic", "std_msgs/msg/String", "rosbag_v2"},
+    {"/int_test_topic", "std_msgs/msg/Int32", "rosbag_v2"},
   };
 
   auto topic_metadata = storage_->get_all_topics_and_types();

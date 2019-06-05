@@ -51,12 +51,12 @@ TEST_F(InfoV2EndToEndTestFixture, info_end_to_end_test) {
       "\nMessages:          11"
       "\nTopic information: "));
 
-  EXPECT_THAT(output, HasSubstr(
-      "Topic: rosout | Type: rosgraph_msgs/Log | Count: 5 | Serialization Format: rosbag_v2\n"));
-  EXPECT_THAT(output, HasSubstr("Topic: string_topic | Type: std_msgs/String | Count: 3 | "
+  EXPECT_THAT(output, HasSubstr("Topic: rosout | Type: rcl_interfaces/msg/Log | Count: 5 | "
+    "Serialization Format: rosbag_v2\n"));
+  EXPECT_THAT(output, HasSubstr("Topic: string_topic | Type: std_msgs/msg/String | Count: 3 | "
     "Serialization Format: rosbag_v2\n"));
   EXPECT_THAT(output, HasSubstr(
-      "Topic: int_topic | Type: std_msgs/Int32 | Count: 3 | Serialization Format: rosbag_v2"
+      "Topic: int_topic | Type: std_msgs/msg/Int32 | Count: 3 | Serialization Format: rosbag_v2"
   ));
 }
 
