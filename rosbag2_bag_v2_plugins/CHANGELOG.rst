@@ -2,8 +2,8 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.6 (2019-06-06)
+------------------
 * warn when roscpp is not found (`#4 <https://github.com/ros2/rosbag2_bag_v2/issues/4>`_)
   Signed-off-by: osrf <karsten@openrobotics.org>
 * New type identification (`#3 <https://github.com/ros2/rosbag2_bag_v2/issues/3>`_)
