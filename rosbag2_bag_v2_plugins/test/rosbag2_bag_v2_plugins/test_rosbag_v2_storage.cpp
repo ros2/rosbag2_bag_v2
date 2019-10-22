@@ -76,7 +76,7 @@ TEST_F(RosbagV2StorageTestFixture, get_metadata_returns_bagfile_description)
 
   auto bag_metadata = storage_->get_metadata();
 
-  EXPECT_THAT(bag_metadata.version, Eq(1));
+  EXPECT_THAT(bag_metadata.version, Eq(2));
   EXPECT_THAT(bag_metadata.storage_identifier, StrEq("rosbag_v2"));
   EXPECT_THAT(bag_metadata.bag_size, Eq(9023u));
   EXPECT_THAT(bag_metadata.relative_file_paths, ElementsAre("test_bag.bag"));

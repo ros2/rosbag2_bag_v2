@@ -104,13 +104,23 @@ std::vector<rosbag2_storage::TopicMetadata> RosbagV2Storage::get_all_topics_and_
   return topics_with_type;
 }
 
+std::string RosbagV2Storage::get_storage_identifier() const
+{
+  return "rosbag_v2";
+}
+
+uint64_t RosbagV2Storage::get_bagfile_size() const
+{
+  return rosbag2_storage::FilesystemHelper::get_file_size(ros_v2_bag_->getFileName());
+}
+
 rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
 {
   auto bag_view = std::make_unique<rosbag::View>(*ros_v2_bag_);
   auto full_file_path = ros_v2_bag_->getFileName();
   rosbag2_storage::BagMetadata metadata;
-  metadata.storage_identifier = "rosbag_v2";
-  metadata.bag_size = rosbag2_storage::FilesystemHelper::get_file_size(full_file_path);
+  metadata.storage_identifier = get_storage_identifier();
+  metadata.bag_size = get_bagfile_size();
   metadata.relative_file_paths = {
     rosbag2_storage::FilesystemHelper::get_file_name(full_file_path)
   };
