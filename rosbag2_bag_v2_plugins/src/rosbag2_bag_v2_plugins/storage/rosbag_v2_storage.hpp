@@ -45,6 +45,10 @@ public:
 
   uint64_t get_bagfile_size() const override;
 
+  /**
+   * Returns the identifier for the rosbag_v2 plugin.
+   * \returns the identifier "rosbag_v2"
+   */
   std::string get_storage_identifier() const override;
 
 private:
