@@ -30,6 +30,11 @@
 namespace rosbag2_bag_v2_plugins
 {
 
+namespace
+{
+const char * IDENTIFIER = "rosbag_v2";
+}
+
 RosbagV2Storage::RosbagV2Storage()
 : ros_v2_bag_(std::make_unique<rosbag::Bag>()), bag_view_of_replayable_messages_(nullptr) {}
 
@@ -106,7 +111,7 @@ std::vector<rosbag2_storage::TopicMetadata> RosbagV2Storage::get_all_topics_and_
 
 std::string RosbagV2Storage::get_storage_identifier() const
 {
-  return "rosbag_v2";
+  return IDENTIFIER;
 }
 
 uint64_t RosbagV2Storage::get_bagfile_size() const
