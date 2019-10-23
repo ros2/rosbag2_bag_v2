@@ -32,7 +32,7 @@ namespace rosbag2_bag_v2_plugins
 
 namespace
 {
-const char * IDENTIFIER = "rosbag_v2";
+constexpr const char * const IDENTIFIER = "rosbag_v2";
 }
 
 RosbagV2Storage::RosbagV2Storage()
