@@ -45,6 +45,8 @@ public:
 
   uint64_t get_bagfile_size() const override;
 
+  std::string get_relative_path() const override;
+
   /**
    * Returns the identifier for the rosbag_v2 plugin.
    * \returns the identifier "rosbag_v2"

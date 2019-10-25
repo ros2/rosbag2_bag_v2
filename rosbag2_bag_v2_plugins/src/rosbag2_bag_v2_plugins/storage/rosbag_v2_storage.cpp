@@ -119,6 +119,11 @@ uint64_t RosbagV2Storage::get_bagfile_size() const
   return rosbag2_storage::FilesystemHelper::get_file_size(ros_v2_bag_->getFileName());
 }
 
+std::string RosbagV2Storage::get_relative_path() const
+{
+  return rosbag2_storage::FilesystemHelper::get_file_name(ros_v2_bag_->getFileName());
+}
+
 rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
 {
   auto bag_view = std::make_unique<rosbag::View>(*ros_v2_bag_);
@@ -126,9 +131,7 @@ rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
   rosbag2_storage::BagMetadata metadata;
   metadata.storage_identifier = get_storage_identifier();
   metadata.bag_size = get_bagfile_size();
-  metadata.relative_file_paths = {
-    rosbag2_storage::FilesystemHelper::get_file_name(full_file_path)
-  };
+  metadata.relative_file_paths = {get_relative_path()};
   metadata.duration = std::chrono::nanoseconds(
     bag_view->getEndTime().toNSec() - bag_view->getBeginTime().toNSec());
   metadata.starting_time = std::chrono::time_point<std::chrono::high_resolution_clock>(
