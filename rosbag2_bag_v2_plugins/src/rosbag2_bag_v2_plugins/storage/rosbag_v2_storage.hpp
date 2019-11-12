@@ -43,6 +43,16 @@ public:
 
   rosbag2_storage::BagMetadata get_metadata() override;
 
+  uint64_t get_bagfile_size() const override;
+
+  std::string get_relative_path() const override;
+
+  /**
+   * Returns the identifier for the rosbag_v2 plugin.
+   * \returns the identifier "rosbag_v2"
+   */
+  std::string get_storage_identifier() const override;
+
 private:
   template<typename T>
   bool vector_has_already_element(std::vector<T> vector, const T & element)
