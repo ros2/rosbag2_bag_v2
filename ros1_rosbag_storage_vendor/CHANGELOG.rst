@@ -2,6 +2,9 @@
 Changelog for package ros1_rosbag_storage_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.6 (2019-06-06)
 ------------------
 * removed dependency to ros1_bridge package (`#90 <https://github.com/ros2/rosbag2_bag_v2/issues/90>`_)

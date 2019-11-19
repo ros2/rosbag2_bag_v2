@@ -2,6 +2,12 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update interfaces to eloquent API. (`#8 <https://github.com/ros2/rosbag2_bag_v2/issues/8>`_)
+* Implement changes in IO interfaces. (`#7 <https://github.com/ros2/rosbag2_bag_v2/issues/7>`_)
+* Contributors: Zachary Michaels
+
 0.0.6 (2019-06-06)
 ------------------
 * warn when roscpp is not found (`#4 <https://github.com/ros2/rosbag2_bag_v2/issues/4>`_)
