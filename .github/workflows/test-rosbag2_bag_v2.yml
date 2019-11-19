@@ -19,6 +19,6 @@ jobs:
       - uses: ros-tooling/setup-ros2@master
       - uses: ros-tooling/action-ros2-ci@master
         with:
-          package-name: rosbag2_bag_v2
+          package-name: rosbag2_bag_v2_plugins
 
 
