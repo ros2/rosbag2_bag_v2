@@ -2,8 +2,8 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.7 (2019-11-18)
+------------------
 * Update interfaces to eloquent API. (`#8 <https://github.com/ros2/rosbag2_bag_v2/issues/8>`_)
 * Implement changes in IO interfaces. (`#7 <https://github.com/ros2/rosbag2_bag_v2/issues/7>`_)
 * Contributors: Zachary Michaels
