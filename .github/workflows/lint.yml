@@ -1,0 +1,48 @@
+# Run linters automatically on pull requests.
+name: Lint rosbag2_bag_v2
+on:
+  pull_request:
+
+jobs:
+  ament_copyright:
+    name: ament_copyright
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ros-tooling/setup-ros2@0.0.7
+    - uses: ros-tooling/action-ros2-lint@0.0.5
+      with:
+        linter: copyright
+        package-name: |
+            ros1_rosbag_storage_vendor
+            rosbag2_bag_v2_plugins
+
+  ament_xmllint:
+    name: ament_xmllint
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ros-tooling/setup-ros2@0.0.7
+    - uses: ros-tooling/action-ros2-lint@0.0.5
+      with:
+        linter: xmllint
+        package-name: |
+            ros1_rosbag_storage_vendor
+            rosbag2_bag_v2_plugins
+
+  ament_lint_cpp: # Linters applicable to C++ packages
+    name: ament_${{ matrix.linter }}
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+          linter: [cppcheck, cpplint, uncrustify]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ros-tooling/setup-ros2@0.0.7
+    - uses: ros-tooling/action-ros2-lint@0.0.5
+      with:
+        linter: ${{ matrix.linter }}
+        package-name: |
+            ros1_rosbag_storage_vendor
+            rosbag2_bag_v2_plugins
