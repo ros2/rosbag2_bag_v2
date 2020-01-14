@@ -23,7 +23,8 @@
 
 namespace rosbag2_bag_v2_plugins
 {
-class RosbagV2Deserializer : public rosbag2_cpp::converter_interfaces::SerializationFormatDeserializer
+class RosbagV2Deserializer
+  : public rosbag2_cpp::converter_interfaces::SerializationFormatDeserializer
 {
 public:
   RosbagV2Deserializer() = default;
