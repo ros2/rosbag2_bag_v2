@@ -27,8 +27,8 @@ from ros1_bridge import camel_case_to_lower_case_underscore
 #include "rclcpp/rclcpp.hpp"
 #include "rcutils/allocator.h"
 #include "rosbag2_storage/ros_helper.hpp"
-#include "rosbag2/typesupport_helpers.hpp"
-#include "rosbag2/types/introspection_message.hpp"
+#include "rosbag2_cpp/typesupport_helpers.hpp"
+#include "rosbag2_cpp/types/introspection_message.hpp"
 
 @[for m in mappings]@
 #include "@(m.ros1_msg.package_name)/@(m.ros1_msg.message_name).h"
@@ -47,7 +47,7 @@ void
 convert_1_to_2(
   const std::string & ros1_type_name,
   ros::serialization::IStream & ros1_message_stream,
-  std::shared_ptr<rosbag2_introspection_message_t> ros2_message)
+  std::shared_ptr<rosbag2_cpp::rosbag2_introspection_message_t> ros2_message)
 {
   @[if not mappings]@
   (void) ros1_type_name;
