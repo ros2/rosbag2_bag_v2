@@ -19,6 +19,7 @@
 
 #include "rosbag2_cpp/converter_interfaces/serialization_format_deserializer.hpp"
 #include "rosbag2_cpp/types/introspection_message.hpp"
+
 #include "rosbag2_storage/serialized_bag_message.hpp"
 
 namespace rosbag2_bag_v2_plugins
