@@ -114,7 +114,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   ROSBAG2_BAG_V2_PLUGINS_BUILDING_DLL)
 
 pluginlib_export_plugin_description_file(rosbag2_storage storage_plugin_description.xml)
-pluginlib_export_plugin_description_file(rosbag2 converter_plugin_description.xml)
+pluginlib_export_plugin_description_file(rosbag2_cpp converter_plugin_description.xml)
 
 install(
   TARGETS ${PROJECT_NAME}
