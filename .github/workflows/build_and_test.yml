@@ -5,9 +5,9 @@ on:
     branches:
       - master
   schedule:
-    # Run every hour. This helps detect flakiness,
+    # Run every 6 hours. This helps detect flakiness,
     # and broken external dependencies.
-    - cron:  '0 * * * *'
+    - cron:  '0 */6 * * *'
 
 jobs:
   test:
