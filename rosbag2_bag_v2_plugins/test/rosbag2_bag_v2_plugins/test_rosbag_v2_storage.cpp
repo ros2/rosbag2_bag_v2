@@ -20,7 +20,7 @@
 #include <tuple>
 #include <vector>
 
-#include "rosbag2_storage/filesystem_helper.hpp"
+#include "rcpputils/filesystem_helper.hpp"
 #include "rosbag2_storage/topic_metadata.hpp"
 #include "rosbag_v2_storage_test_fixture.hpp"
 
@@ -125,8 +125,7 @@ TEST_F(RosbagV2StorageTestFixture, read_next_will_produce_messages_ordered_by_ti
 
 TEST_F(RosbagV2StorageTestFixture, get_topics_and_types_will_only_return_one_entry_per_topic)
 {
-  bag_path_ = rosbag2_storage::FilesystemHelper::concat(
-    {database_path_, "test_bag_multiple_connections.bag"});
+  bag_path_ = (rcpputils::fs::path(database_path_) / "test_bag_multiple_connections.bag").string();
   storage_ = std::make_shared<rosbag2_bag_v2_plugins::RosbagV2Storage>();
   storage_->open(bag_path_, rosbag2_storage::storage_interfaces::IOFlag::READ_ONLY);
 

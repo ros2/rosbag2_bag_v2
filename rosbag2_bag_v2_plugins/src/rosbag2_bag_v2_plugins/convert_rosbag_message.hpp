@@ -19,8 +19,7 @@
 #include <string>
 
 #include "rosbag/message_instance.h"
-#include "rosbag2/types.hpp"
-#include "rosbag2/types/introspection_message.hpp"
+#include "rosbag2_cpp/types/introspection_message.hpp"
 
 namespace rosbag2_bag_v2_plugins
 {
@@ -30,7 +29,7 @@ void
 convert_1_to_2(
   const std::string & ros1_type_name,
   ros::serialization::IStream & ros1_message_stream,
-  std::shared_ptr<rosbag2_introspection_message_t> ros2_message);
+  std::shared_ptr<rosbag2_cpp::rosbag2_introspection_message_t> ros2_message);
 }  // namespace rosbag2_bag_v2_plugins
 
 #endif  // ROSBAG2_BAG_V2_PLUGINS__CONVERT_ROSBAG_MESSAGE_HPP_

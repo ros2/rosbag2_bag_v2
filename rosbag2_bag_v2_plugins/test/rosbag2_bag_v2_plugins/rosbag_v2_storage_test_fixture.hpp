@@ -18,9 +18,9 @@
 #include <memory>
 #include <string>
 
+#include "rcpputils/filesystem_helper.hpp"
 #include "rosbag2_test_common/temporary_directory_fixture.hpp"
 #include "rosbag2_storage/serialized_bag_message.hpp"
-#include "rosbag2_storage/filesystem_helper.hpp"
 #include "../../src/rosbag2_bag_v2_plugins/storage/rosbag_v2_storage.hpp"
 #include "rosbag/bag.h"
 #include "rosbag/view.h"
@@ -33,7 +33,7 @@ public:
   RosbagV2StorageTestFixture()
   {
     database_path_ = _SRC_RESOURCES_DIR_PATH;  // variable defined in CMakeLists.txt
-    bag_path_ = rosbag2_storage::FilesystemHelper::concat({database_path_, "test_bag.bag"});
+    bag_path_ = (rcpputils::fs::path(database_path_) / "test_bag.bag").string();
     storage_ = std::make_shared<rosbag2_bag_v2_plugins::RosbagV2Storage>();
     storage_->open(bag_path_, rosbag2_storage::storage_interfaces::IOFlag::READ_ONLY);
   }

@@ -34,8 +34,9 @@ endif()
 
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rcpputils REQUIRED)
 find_package(rcutils REQUIRED)
-find_package(rosbag2 REQUIRED)
+find_package(rosbag2_cpp REQUIRED)
 find_package(rosbag2_storage REQUIRED)
 find_package(ros1_rosbag_storage REQUIRED)  # provided by ros1_rosbag_storage_vendor
 
@@ -83,8 +84,8 @@ add_library(
 ament_target_dependencies(${PROJECT_NAME}
   ros1_rosbag_storage
   rclcpp
+  rosbag2_cpp
   rosbag2_storage
-  rosbag2
   ros1_bridge
   pluginlib
   ros1_cpp_common
@@ -113,7 +114,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   ROSBAG2_BAG_V2_PLUGINS_BUILDING_DLL)
 
 pluginlib_export_plugin_description_file(rosbag2_storage storage_plugin_description.xml)
-pluginlib_export_plugin_description_file(rosbag2 converter_plugin_description.xml)
+pluginlib_export_plugin_description_file(rosbag2_cpp converter_plugin_description.xml)
 
 install(
   TARGETS ${PROJECT_NAME}

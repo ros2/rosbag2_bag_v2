@@ -19,10 +19,14 @@
 #include <vector>
 #include <utility>
 
+#include "rcpputils/filesystem_helper.hpp"
+#include "rcutils/filesystem.h"
 #include "rosbag/message_instance.h"
 
-#include "rosbag2_storage/filesystem_helper.hpp"
+#include "rosbag2_storage/bag_metadata.hpp"
 #include "rosbag2_storage/ros_helper.hpp"
+#include "rosbag2_storage/serialized_bag_message.hpp"
+#include "rosbag2_storage/topic_metadata.hpp"
 #include "rosbag_output_stream.hpp"
 #include "../logging.hpp"
 #include "../convert_rosbag_message.hpp"
@@ -116,12 +120,12 @@ std::string RosbagV2Storage::get_storage_identifier() const
 
 uint64_t RosbagV2Storage::get_bagfile_size() const
 {
-  return rosbag2_storage::FilesystemHelper::get_file_size(ros_v2_bag_->getFileName());
+  return rcutils_get_file_size(ros_v2_bag_->getFileName().c_str());
 }
 
 std::string RosbagV2Storage::get_relative_file_path() const
 {
-  return rosbag2_storage::FilesystemHelper::get_file_name(ros_v2_bag_->getFileName());
+  return rcpputils::fs::path(ros_v2_bag_->getFileName()).filename().string();
 }
 
 rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
@@ -129,6 +133,7 @@ rosbag2_storage::BagMetadata RosbagV2Storage::get_metadata()
   auto bag_view = std::make_unique<rosbag::View>(*ros_v2_bag_);
   auto full_file_path = ros_v2_bag_->getFileName();
   rosbag2_storage::BagMetadata metadata;
+  metadata.version = 2;
   metadata.storage_identifier = get_storage_identifier();
   metadata.bag_size = get_bagfile_size();
   metadata.relative_file_paths = {get_relative_file_path()};

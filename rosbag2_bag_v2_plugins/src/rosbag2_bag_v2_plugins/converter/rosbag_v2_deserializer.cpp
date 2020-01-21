@@ -19,16 +19,19 @@
 
 #include "rosbag/message_instance.h"
 
-#include "rosbag2/converter_interfaces/serialization_format_deserializer.hpp"
-#include "rosbag2/types/introspection_message.hpp"
+#include "rosbag2_cpp/converter_interfaces/serialization_format_deserializer.hpp"
+#include "rosbag2_cpp/types/introspection_message.hpp"
+
+#include "rosbag2_storage/serialized_bag_message.hpp"
+
 #include "../convert_rosbag_message.hpp"
 
 namespace rosbag2_bag_v2_plugins
 {
 void RosbagV2Deserializer::deserialize(
-  std::shared_ptr<const rosbag2::SerializedBagMessage> serialized_message,
+  std::shared_ptr<const rosbag2_storage::SerializedBagMessage> serialized_message,
   const rosidl_message_type_support_t * type_support,
-  std::shared_ptr<rosbag2_introspection_message_t> ros_message)
+  std::shared_ptr<rosbag2_cpp::rosbag2_introspection_message_t> ros_message)
 {
   (void) type_support;
 
@@ -46,11 +49,11 @@ void RosbagV2Deserializer::deserialize(
   convert_1_to_2(ros1_data_type, stream, ros_message);
 
   ros_message->time_stamp = serialized_message->time_stamp;
-  rosbag2::introspection_message_set_topic_name(
+  rosbag2_cpp::introspection_message_set_topic_name(
     ros_message.get(), serialized_message->topic_name.c_str());
 }
 }  // namespace rosbag2_bag_v2_plugins
 
 #include "pluginlib/class_list_macros.hpp"  // NOLINT
 PLUGINLIB_EXPORT_CLASS(rosbag2_bag_v2_plugins::RosbagV2Deserializer,
-  rosbag2::converter_interfaces::SerializationFormatDeserializer)
+  rosbag2_cpp::converter_interfaces::SerializationFormatDeserializer)

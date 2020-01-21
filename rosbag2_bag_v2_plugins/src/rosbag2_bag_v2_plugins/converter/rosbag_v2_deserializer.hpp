@@ -17,22 +17,24 @@
 
 #include <memory>
 
-#include "rosbag2/converter_interfaces/serialization_format_deserializer.hpp"
-#include "rosbag2/types.hpp"
-#include "rosbag2/types/introspection_message.hpp"
+#include "rosbag2_cpp/converter_interfaces/serialization_format_deserializer.hpp"
+#include "rosbag2_cpp/types/introspection_message.hpp"
+
+#include "rosbag2_storage/serialized_bag_message.hpp"
 
 namespace rosbag2_bag_v2_plugins
 {
-class RosbagV2Deserializer : public rosbag2::converter_interfaces::SerializationFormatDeserializer
+class RosbagV2Deserializer
+  : public rosbag2_cpp::converter_interfaces::SerializationFormatDeserializer
 {
 public:
   RosbagV2Deserializer() = default;
   virtual ~RosbagV2Deserializer() = default;
 
   void deserialize(
-    std::shared_ptr<const rosbag2::SerializedBagMessage> serialized_message,
+    std::shared_ptr<const rosbag2_storage::SerializedBagMessage> serialized_message,
     const rosidl_message_type_support_t * type_support,
-    std::shared_ptr<rosbag2_introspection_message_t> ros_message) override;
+    std::shared_ptr<rosbag2_cpp::rosbag2_introspection_message_t> ros_message) override;
 };
 
 }  // namespace rosbag2_bag_v2_plugins
