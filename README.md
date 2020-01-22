@@ -1,3 +1,6 @@
+![License](https://img.shields.io/github/license/ros2/rosbag2_bag_v2)
+[![GitHub Action Status](https://github.com/ros2/rosbag2_bag_v2/workflows/Test%20rosbag2_bag_v2/badge.svg)](https://github.com/ros2/rosbag2_bag_v2/actions)
+
 The plugin for rosbags from ROS 1
 =================================
 
