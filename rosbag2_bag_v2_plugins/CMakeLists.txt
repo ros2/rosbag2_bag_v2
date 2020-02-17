@@ -20,12 +20,12 @@ find_package(ament_cmake REQUIRED)
 # include bridge first to not create package if ros1 packages cannot be found
 find_package(ros1_bridge QUIET)
 if(NOT ros1_bridge_FOUND)
-  message(FATAL_ERROR "Failed to find ros1_bridge, skipping...")
+  message(FATAL_ERROR "Failed to find ros1_bridge, cannot build.")
 endif()
 
 find_ros1_package(roscpp)
 if(NOT ros1_roscpp_FOUND)
-  message(FATAL_ERROR "Failed to find ROS 1 roscpp, skipping...")
+  message(FATAL_ERROR "Failed to find ROS 1 roscpp, cannot build.")
 endif()
 
 find_package(pluginlib REQUIRED)
