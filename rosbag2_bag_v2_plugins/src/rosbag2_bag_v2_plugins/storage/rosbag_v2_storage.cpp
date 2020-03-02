@@ -66,9 +66,10 @@ void RosbagV2Storage::open(
         topics_valid_in_ros2.push_back(connection->topic);
       }
     } else {
-      ROSBAG2_BAG_V2_PLUGINS_LOG_INFO_STREAM("ROS 1 to ROS 2 type mapping is not available for "
+      ROSBAG2_BAG_V2_PLUGINS_LOG_INFO_STREAM(
+        "ROS 1 to ROS 2 type mapping is not available for "
         "topic '" << connection->topic << "' which is of type '" << connection->datatype <<
-        "'. Skipping messages of this topic when replaying.");
+          "'. Skipping messages of this topic when replaying.");
     }
   }
 

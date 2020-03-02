@@ -41,7 +41,8 @@ TEST_F(InfoV2EndToEndTestFixture, info_end_to_end_test) {
 
   EXPECT_THAT(exit_code, Eq(EXIT_SUCCESS));
 // The bag size depends on the os and is not asserted, the time is asserted time zone independent
-  EXPECT_THAT(output, ContainsRegex(
+  EXPECT_THAT(
+    output, ContainsRegex(
       "\nFiles:             test_bag_end_to_end\\.bag"
       "\nBag size:          .*B"
       "\nStorage id:        rosbag_v2"
@@ -51,11 +52,16 @@ TEST_F(InfoV2EndToEndTestFixture, info_end_to_end_test) {
       "\nMessages:          11"
       "\nTopic information: "));
 
-  EXPECT_THAT(output, HasSubstr("Topic: rosout | Type: rcl_interfaces/msg/Log | Count: 5 | "
-    "Serialization Format: rosbag_v2\n"));
-  EXPECT_THAT(output, HasSubstr("Topic: string_topic | Type: std_msgs/msg/String | Count: 3 | "
-    "Serialization Format: rosbag_v2\n"));
-  EXPECT_THAT(output, HasSubstr(
+  EXPECT_THAT(
+    output, HasSubstr(
+      "Topic: rosout | Type: rcl_interfaces/msg/Log | Count: 5 | "
+      "Serialization Format: rosbag_v2\n"));
+  EXPECT_THAT(
+    output, HasSubstr(
+      "Topic: string_topic | Type: std_msgs/msg/String | Count: 3 | "
+      "Serialization Format: rosbag_v2\n"));
+  EXPECT_THAT(
+    output, HasSubstr(
       "Topic: int_topic | Type: std_msgs/msg/Int32 | Count: 3 | Serialization Format: rosbag_v2"
   ));
 }
