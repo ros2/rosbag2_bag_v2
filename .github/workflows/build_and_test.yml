@@ -13,12 +13,14 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-    - uses: ros-tooling/setup-ros@0.0.15
+    - uses: ros-tooling/setup-ros@add-catkin-pkg
       with:
         required-ros-distributions: melodic
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v1
     - name: install caktin-pkg
       run: |
-        pip3 install catkin-pkg
+        sudo apt install python3-catkin-pkg
     - uses: ros-tooling/action-ros-ci@0.0.13
       with:
         package-name: ros1_rosbag_storage_vendor rosbag2_bag_v2_plugins
