@@ -13,7 +13,18 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-    - uses: ros-tooling/setup-ros@0.0.13
+    - name: Cache ROS packages
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-ros-packages
+      with:
+        path: /opt/ros
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - uses: ros-tooling/setup-ros@0.0.15
       with:
         required-ros-distributions: melodic
     - uses: ros-tooling/action-ros-ci@0.0.13
