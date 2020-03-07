@@ -13,9 +13,15 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-    - uses: ros-tooling/setup-ros@0.0.13
+    - uses: ros-tooling/setup-ros@0.0.15
       with:
         required-ros-distributions: melodic
+    # ros-melodic-desktop uninstalls python3-catkin-pkg due to a package conflict with
+    # python-catkin-pkg. We need to reinstall it in order for colcon to work.
+    # See https://answers.ros.org/question/345875/installing-ros-melodic-desktop-uninstalls-python3-catkin-pkg/
+    - name: Install catkin-pkg
+      run: |
+        sudo apt install python3-catkin-pkg
     - uses: ros-tooling/action-ros-ci@0.0.13
       with:
         package-name: ros1_rosbag_storage_vendor rosbag2_bag_v2_plugins
