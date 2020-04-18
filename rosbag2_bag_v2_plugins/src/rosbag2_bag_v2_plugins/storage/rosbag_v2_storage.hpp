@@ -22,6 +22,7 @@
 #include "rosbag2_storage/bag_metadata.hpp"
 #include "rosbag2_storage/storage_interfaces/read_only_interface.hpp"
 #include "rosbag2_storage/serialized_bag_message.hpp"
+#include "rosbag2_storage/storage_filter.hpp"
 #include "rosbag2_storage/topic_metadata.hpp"
 #include "rosbag/bag.h"
 #include "rosbag/view.h"
@@ -56,6 +57,10 @@ public:
    */
   std::string get_storage_identifier() const override;
 
+  void set_filter(const rosbag2_storage::StorageFilter & storage_filter) override;
+
+  void reset_filter() override;
+
 private:
   template<typename T>
   bool vector_has_already_element(std::vector<T> vector, const T & element)
@@ -68,6 +73,7 @@ private:
   std::unique_ptr<rosbag::Bag> ros_v2_bag_;
   std::unique_ptr<rosbag::View> bag_view_of_replayable_messages_;
   rosbag::View::iterator bag_iterator_;
+  rosbag2_storage::StorageFilter storage_filter_ {};
 };
 
 }  // namespace rosbag2_bag_v2_plugins

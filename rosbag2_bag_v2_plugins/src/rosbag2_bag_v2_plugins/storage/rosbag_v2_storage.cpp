@@ -79,7 +79,21 @@ void RosbagV2Storage::open(
 
 bool RosbagV2Storage::has_next()
 {
-  return bag_iterator_ != bag_view_of_replayable_messages_->end();
+  if (storage_filter_.topics.empty()) {
+    return bag_iterator_ != bag_view_of_replayable_messages_->end();
+  }
+
+  while (bag_iterator_ != bag_view_of_replayable_messages_->end()) {
+    auto message_instance = *bag_iterator_;
+
+    for (const auto & filter_topic : storage_filter_.topics) {
+      if (!message_instance.getTopic().compare(filter_topic)) {
+        return true;
+      }
+    }
+    bag_iterator_++;
+  }
+  return false;
 }
 
 std::shared_ptr<rosbag2_storage::SerializedBagMessage> RosbagV2Storage::read_next()
@@ -185,6 +199,17 @@ RosbagV2Storage::get_all_topics_and_types_including_ros1_topics()
   }
 
   return topics_with_type;
+}
+
+void RosbagV2Storage::set_filter(
+  const rosbag2_storage::StorageFilter & storage_filter)
+{
+  storage_filter_ = storage_filter;
+}
+
+void RosbagV2Storage::reset_filter()
+{
+  storage_filter_ = rosbag2_storage::StorageFilter();
 }
 
 }  // namespace rosbag2_bag_v2_plugins
