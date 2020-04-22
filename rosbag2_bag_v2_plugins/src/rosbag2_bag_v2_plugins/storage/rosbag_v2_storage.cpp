@@ -209,7 +209,7 @@ void RosbagV2Storage::set_filter(
 
 void RosbagV2Storage::reset_filter()
 {
-  storage_filter_ = rosbag2_storage::StorageFilter();
+  storage_filter_ = rosbag2_storage::StorageFilter{};
 }
 
 }  // namespace rosbag2_bag_v2_plugins
