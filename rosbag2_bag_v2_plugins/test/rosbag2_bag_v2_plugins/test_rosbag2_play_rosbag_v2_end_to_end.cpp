@@ -24,6 +24,10 @@
 
 // rclcpp must be included before process_execution_helpers.hpp
 #include "rclcpp/rclcpp.hpp"
+
+#include "rosbag2_transport/rosbag2_transport.hpp"
+#include "rosbag2_cpp/reader.hpp"
+#include "rosbag2_cpp/readers/sequential_reader.hpp"
 #include "rosbag2_test_common/process_execution_helpers.hpp"
 
 #include "std_msgs/msg/string.hpp"
@@ -56,6 +60,18 @@ public:
   std::string database_path_;
   std::unique_ptr<SubscriptionManager> sub_;
 };
+
+TEST_F(PlayEndToEndTestFixture, play_all) {
+  rosbag2_transport::Rosbag2Transport rosbag2_transport;
+  rosbag2_transport::StorageOptions storage_options;
+  storage_options.uri = database_path_ + "/test_bag_end_to_end.bag";
+  printf("storage_options uri %s\n", storage_options.uri.c_str());
+  storage_options.storage_id = "rosbag_v2";
+  rosbag2_transport::PlayOptions play_options;
+  rosbag2_transport.play(storage_options, play_options);
+
+  SUCCEED();
+}
 
 TEST_F(PlayEndToEndTestFixture, play_end_to_end_test_does_not_try_to_publish_ros1_topics) {
   sub_->add_subscription<std_msgs::msg::String>("/string_topic", 2);

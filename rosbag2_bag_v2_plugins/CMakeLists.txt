@@ -126,6 +126,7 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gmock REQUIRED)
   find_package(ament_lint_auto REQUIRED)
   find_package(rosbag2_test_common REQUIRED)
+  find_package(rosbag2_transport REQUIRED)
 
   ament_lint_auto_find_test_dependencies()
 
@@ -163,6 +164,7 @@ if(BUILD_TESTING)
       rosbag2_storage
       rclcpp
       rosbag2_test_common
+      rosbag2_transport
       std_msgs)
   endif()
 

@@ -55,5 +55,6 @@ void RosbagV2Deserializer::deserialize(
 }  // namespace rosbag2_bag_v2_plugins
 
 #include "pluginlib/class_list_macros.hpp"  // NOLINT
-PLUGINLIB_EXPORT_CLASS(rosbag2_bag_v2_plugins::RosbagV2Deserializer,
+PLUGINLIB_EXPORT_CLASS(
+  rosbag2_bag_v2_plugins::RosbagV2Deserializer,
   rosbag2_cpp::converter_interfaces::SerializationFormatDeserializer)
