@@ -2,6 +2,13 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adapt storage interface for filtering topics. (`#28 <https://github.com/ros2/rosbag2_bag_v2/issues/28>`_)
+* Raise an error instead of a warning without ROS 1. (`#23 <https://github.com/ros2/rosbag2_bag_v2/issues/23>`_)
+* Use rosbag2 metapackage. (`#16 <https://github.com/ros2/rosbag2_bag_v2/issues/16>`_)
+* Contributors: Emerson Knapp, Mabel Zhang, Zachary Michaels
+
 0.0.7 (2019-11-18)
 ------------------
 * Update interfaces to eloquent API. (`#8 <https://github.com/ros2/rosbag2_bag_v2/issues/8>`_)

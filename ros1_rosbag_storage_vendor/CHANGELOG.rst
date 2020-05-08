@@ -2,6 +2,11 @@
 Changelog for package ros1_rosbag_storage_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adapt storage interface for filtering topics. (`#28 <https://github.com/ros2/rosbag2_bag_v2/issues/28>`_)
+* Contributors: Mabel Zhang
+
 0.0.7 (2019-11-18)
 ------------------
 
