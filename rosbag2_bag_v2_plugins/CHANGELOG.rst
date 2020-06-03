@@ -2,6 +2,9 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.8 (2020-05-08)
 ------------------
 * Adapt storage interface for filtering topics. (`#28 <https://github.com/ros2/rosbag2_bag_v2/issues/28>`_)
