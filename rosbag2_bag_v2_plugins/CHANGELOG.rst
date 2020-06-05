@@ -2,6 +2,11 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* workaroud add shared_queues_vendor as test dependency (`#30 <https://github.com/ros2/rosbag2_bag_v2/issues/30>`_)
+* Contributors: Karsten Knese
+
 0.0.9 (2020-06-03)
 ------------------
 

@@ -2,6 +2,9 @@
 Changelog for package ros1_rosbag_storage_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.9 (2020-06-03)
 ------------------
 
