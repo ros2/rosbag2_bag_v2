@@ -127,6 +127,8 @@ if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   find_package(rosbag2_test_common REQUIRED)
   find_package(rosbag2_transport REQUIRED)
+  find_package(shared_queues_vendor REQUIRED)
+
 
   ament_lint_auto_find_test_dependencies()
 
