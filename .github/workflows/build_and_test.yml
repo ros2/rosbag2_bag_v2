@@ -11,12 +11,22 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-focal-ros-foxy-ros-base-testing-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ros1_distro: [melodic]
+        ros2_distro: [foxy]
     steps:
-    - uses: ros-tooling/setup-ros@0.0.13
+    # TODO(setup-ros-docker#7): calling chown is necessary for now
+    - run: sudo chown -R rosbuild:rosbuild "$HOME" .
+    - uses: ros-tooling/setup-ros@0.0.25
       with:
-        required-ros-distributions: melodic
-    - uses: ros-tooling/action-ros-ci@0.0.13
+        required-ros-distributions: ${{ matrix.ros1_distro }} ${{ matrix.ros2_distro }}
+    - uses: ros-tooling/action-ros-ci@0.0.19
       with:
         package-name: ros1_rosbag_storage_vendor rosbag2_bag_v2_plugins
-        source-ros-binary-installation: melodic
+        target_ros1_distro: ${{ matrix.ros1_distro }}
+        target_ros2_distro: ${{ matrix.ros2_distro }}
