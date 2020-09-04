@@ -13,15 +13,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: rostooling/setup-ros-docker:ubuntu-focal-ros-foxy-ros-base-testing-latest
+      image: ubuntu:focal
     strategy:
       fail-fast: false
       matrix:
-        ros1_distro: [melodic]
+        ros1_distro: [noetic]
         ros2_distro: [foxy]
     steps:
-    # TODO(setup-ros-docker#7): calling chown is necessary for now
-    - run: sudo chown -R rosbuild:rosbuild "$HOME" .
     - uses: ros-tooling/setup-ros@0.0.25
       with:
         required-ros-distributions: ${{ matrix.ros1_distro }} ${{ matrix.ros2_distro }}
