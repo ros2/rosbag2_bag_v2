@@ -28,6 +28,7 @@
 #include "rosbag2_transport/rosbag2_transport.hpp"
 #include "rosbag2_cpp/reader.hpp"
 #include "rosbag2_cpp/readers/sequential_reader.hpp"
+#include "rosbag2_storage/storage_options.hpp"
 #include "rosbag2_test_common/process_execution_helpers.hpp"
 
 #include "std_msgs/msg/string.hpp"
@@ -63,7 +64,7 @@ public:
 
 TEST_F(PlayEndToEndTestFixture, play_all) {
   rosbag2_transport::Rosbag2Transport rosbag2_transport;
-  rosbag2_transport::StorageOptions storage_options;
+  rosbag2_storage::StorageOptions storage_options;
   storage_options.uri = database_path_ + "/test_bag_end_to_end.bag";
   printf("storage_options uri %s\n", storage_options.uri.c_str());
   storage_options.storage_id = "rosbag_v2";

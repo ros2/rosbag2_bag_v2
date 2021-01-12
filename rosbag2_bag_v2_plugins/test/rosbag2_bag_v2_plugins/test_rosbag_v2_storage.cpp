@@ -128,7 +128,9 @@ TEST_F(RosbagV2StorageTestFixture, get_topics_and_types_will_only_return_one_ent
 {
   bag_path_ = (rcpputils::fs::path(database_path_) / "test_bag_multiple_connections.bag").string();
   storage_ = std::make_shared<rosbag2_bag_v2_plugins::RosbagV2Storage>();
-  storage_->open(bag_path_, rosbag2_storage::storage_interfaces::IOFlag::READ_ONLY);
+  rosbag2_storage::StorageOptions options;
+  options.uri = bag_path_;
+  storage_->open(options, rosbag2_storage::storage_interfaces::IOFlag::READ_ONLY);
 
   std::vector<rosbag2_storage::TopicMetadata> expected_topic_metadata = {
     {"/rosout", "rcl_interfaces/msg/Log", "rosbag_v2", ""},

@@ -37,7 +37,9 @@ public:
 
   ~RosbagV2Storage() override;
 
-  void open(const std::string & uri, rosbag2_storage::storage_interfaces::IOFlag flag) override;
+  void open(
+    const rosbag2_storage::StorageOptions & storage_options,
+    rosbag2_storage::storage_interfaces::IOFlag flag) override;
 
   bool has_next() override;
 
