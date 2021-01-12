@@ -4,43 +4,23 @@ on:
   pull_request:
 
 jobs:
-  ament_copyright:
-    name: ament_copyright
+  ament_lint:
+    name: ament_lint
     runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v1
-    - uses: ros-tooling/setup-ros@0.0.13
-    - uses: ros-tooling/action-ros-lint@0.0.5
-      with:
-        linter: copyright
-        package-name: |
-            ros1_rosbag_storage_vendor
-            rosbag2_bag_v2_plugins
-
-  ament_xmllint:
-    name: ament_xmllint
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v1
-    - uses: ros-tooling/setup-ros@0.0.13
-    - uses: ros-tooling/action-ros-lint@0.0.5
-      with:
-        linter: xmllint
-        package-name: |
-            ros1_rosbag_storage_vendor
-            rosbag2_bag_v2_plugins
-
-  ament_lint_cpp: # Linters applicable to C++ packages
-    name: ament_${{ matrix.linter }}
-    runs-on: ubuntu-18.04
+    container: rostooling/setup-ros-docker:ubuntu-focal-latest
     strategy:
       fail-fast: false
       matrix:
-          linter: [cppcheck, cpplint, uncrustify]
+        linter:
+          - copyright
+          - xmllint
+          - cppcheck
+          - cpplint
+          - uncrustify
     steps:
     - uses: actions/checkout@v1
-    - uses: ros-tooling/setup-ros@0.0.13
-    - uses: ros-tooling/action-ros-lint@0.0.5
+    - uses: ros-tooling/setup-ros@v0.1
+    - uses: ros-tooling/action-ros-lint@v0.1
       with:
         linter: ${{ matrix.linter }}
         package-name: |
