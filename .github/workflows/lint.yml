@@ -6,7 +6,7 @@ on:
 jobs:
   ament_lint:
     name: ament_lint
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container: rostooling/setup-ros-docker:ubuntu-focal-ros-rolling-ros-base-latest
     strategy:
       fail-fast: false
