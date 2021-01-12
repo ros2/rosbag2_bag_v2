@@ -19,7 +19,6 @@ jobs:
           - uncrustify
     steps:
     - uses: actions/checkout@v1
-    - uses: ros-tooling/setup-ros@v0.1
     - uses: ros-tooling/action-ros-lint@v0.1
       with:
         linter: ${{ matrix.linter }}
