@@ -48,13 +48,14 @@ RosbagV2Storage::~RosbagV2Storage()
 }
 
 void RosbagV2Storage::open(
-  const std::string & uri, rosbag2_storage::storage_interfaces::IOFlag flag)
+  const rosbag2_storage::StorageOptions & storage_options,
+  rosbag2_storage::storage_interfaces::IOFlag flag)
 {
   if (flag == rosbag2_storage::storage_interfaces::IOFlag::READ_WRITE) {
     throw std::runtime_error("The rosbag_v2 storage plugin can only be used to read");
   }
 
-  ros_v2_bag_->open(uri);
+  ros_v2_bag_->open(storage_options.uri);
   auto bag_view = std::make_unique<rosbag::View>(*ros_v2_bag_);
 
   std::vector<std::string> topics_valid_in_ros2;
