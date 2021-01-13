@@ -28,6 +28,7 @@ if(NOT ros1_roscpp_FOUND)
   message(FATAL_ERROR "Failed to find ROS 1 roscpp, cannot build.")
 endif()
 
+find_package(class_loader REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rcpputils REQUIRED)
@@ -79,6 +80,7 @@ add_library(
 
 ament_target_dependencies(${PROJECT_NAME}
   ros1_rosbag_storage
+  class_loader
   rclcpp
   rosbag2_cpp
   rosbag2_storage
