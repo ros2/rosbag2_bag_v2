@@ -62,12 +62,11 @@ endif()
 
 ExternalProject_Add(ros1_rosbag_storage
   DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/download
-  URL https://github.com/ros/ros_comm/archive/669fbd32d2f92cc295f4b024fcb2f982fddec0f0.zip
-  URL_MD5 4c8b4c33165b223870f5d77bb697bef6
+  URL https://github.com/ros/ros_comm/archive/08fcc096f4e822b56bfb5a30b0a09ec45f0802aa.zip
+  URL_MD5 b6dad671fc30ab5ce2b3c61eba0fa9fa
   TIMEOUT 60
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/rosbag_install -DCMAKE_NO_SYSTEM_FROM_IMPORTED=1
   PATCH_COMMAND
-    ${PATCH_CMD} ${CMAKE_CURRENT_SOURCE_DIR}/resources/rosbag1_encryption_patch.diff &&
     ${PATCH_CMD} ${CMAKE_CURRENT_SOURCE_DIR}/resources/bagh.diff &&
     ${PATCH_CMD} ${CMAKE_CURRENT_SOURCE_DIR}/resources/bagcpp.diff &&
     ${PATCH_CMD} ${CMAKE_CURRENT_SOURCE_DIR}/resources/bagcpp_name.diff &&
