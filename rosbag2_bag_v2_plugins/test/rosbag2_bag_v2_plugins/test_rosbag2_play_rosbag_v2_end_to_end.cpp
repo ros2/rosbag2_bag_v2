@@ -69,6 +69,7 @@ TEST_F(PlayEndToEndTestFixture, play_all) {
   printf("storage_options uri %s\n", storage_options.uri.c_str());
   storage_options.storage_id = "rosbag_v2";
   rosbag2_transport::PlayOptions play_options;
+  play_options.read_ahead_queue_size = 1000;
   rosbag2_transport.play(storage_options, play_options);
 
   SUCCEED();
