@@ -2,6 +2,11 @@
 Changelog for package ros1_rosbag_storage_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update to the latest rosbag1. (`#40 <https://github.com/ros2/rosbag2_bag_v2/issues/40>`_)
+* Contributors: Chris Lalancette
+
 0.0.9 (2020-06-03)
 ------------------
 
