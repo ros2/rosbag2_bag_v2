@@ -2,8 +2,8 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2021-02-01)
+------------------
 * Update to the latest rosbag1. (`#40 <https://github.com/ros2/rosbag2_bag_v2/issues/40>`_)
 * Fix build for latest rosbag2 StorageOptions API (`#38 <https://github.com/ros2/rosbag2_bag_v2/issues/38>`_)
 * Contributors: Chris Lalancette, Emerson Knapp
