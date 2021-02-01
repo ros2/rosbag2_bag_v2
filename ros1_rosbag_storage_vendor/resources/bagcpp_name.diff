@@ -2,7 +2,7 @@ diff --git a/tools/rosbag_storage/src/bag.cpp b/tools/rosbag_storage/src/bag.cpp
 index 073072934..13a7fc8fc 100644
 --- a/tools/rosbag_storage/src/bag.cpp
 +++ b/tools/rosbag_storage/src/bag.cpp
-@@ -58,12 +58,13 @@ using ros::Time;
+@@ -55,12 +55,13 @@ using ros::Time;
 
  namespace rosbag {
 
@@ -18,7 +18,7 @@ index 073072934..13a7fc8fc 100644
  {
      init();
      open(filename, mode);
-@@ -71,7 +72,7 @@ Bag::Bag(string const& filename, uint32_t mode) : encryptor_loader_("rosbag_stor
+@@ -68,7 +69,7 @@ Bag::Bag(string const& filename, uint32_t mode) : encryptor_loader_("rosbag_stor
 
  #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 

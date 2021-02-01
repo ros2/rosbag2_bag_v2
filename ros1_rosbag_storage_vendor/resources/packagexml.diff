@@ -7,21 +7,22 @@ index 502f5308b..3f28d00f1 100644
 -  <name>rosbag_storage</name>
 +<package format="2">
 +  <name>ros1_rosbag_storage</name>
-   <version>1.14.3</version>
+   <version>1.15.9</version>
    <description>
      This is a set of tools for recording from and playing back ROS
-@@ -8,35 +8,25 @@
-   <maintainer email="dthomas@osrfoundation.org">Dirk Thomas</maintainer>
+@@ -11,36 +11,27 @@
    <license>BSD</license>
-
+   <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
+ 
 -  <buildtool_depend>catkin</buildtool_depend>
 +  <buildtool_depend>ament_cmake</buildtool_depend>
-
+ 
 +  <build_depend>ros1_bridge</build_depend>
-   <build_depend>boost</build_depend>
    <build_depend>bzip2</build_depend>
 -  <build_depend version_gte="0.3.17">cpp_common</build_depend>
++  <build_depend>class_loader</build_depend>
 +  <build_depend>cpp_common</build_depend>
+   <build_depend>libboost-filesystem-dev</build_depend>
    <build_depend>libconsole-bridge-dev</build_depend>
    <build_depend>libgpgme-dev</build_depend>
    <build_depend>libssl-dev</build_depend>
@@ -31,10 +32,11 @@ index 502f5308b..3f28d00f1 100644
 -  <build_depend>rostest</build_depend>
 -  <build_depend>rostime</build_depend>
 -  <build_depend>roslz4</build_depend>
-
--  <run_depend>boost</run_depend>
+-  <build_depend>std_msgs</build_depend>
+ 
 -  <run_depend>bzip2</run_depend>
 -  <run_depend version_gte="0.3.17">cpp_common</run_depend>
+-  <run_depend>libboost-filesystem-dev</run_depend>
 -  <run_depend>libconsole-bridge-dev</run_depend>
 -  <run_depend>libgpgme-dev</run_depend>
 -  <run_depend>libssl-dev</run_depend>
@@ -43,13 +45,14 @@ index 502f5308b..3f28d00f1 100644
 -  <run_depend version_gte="0.3.17">roscpp_traits</run_depend>
 -  <run_depend>rostime</run_depend>
 -  <run_depend>roslz4</run_depend>
-+  <exec_depend>boost</exec_depend>
 +  <exec_depend>bzip2</exec_depend>
++  <exec_depend>class_loader</exec_depend>
++  <exec_depend>libboost-filesystem-dev</exec_depend>
 +  <exec_depend>libconsole-bridge-dev</exec_depend>
 +  <exec_depend>libgpgme-dev</exec_depend>
 +  <exec_depend>libssl-dev</exec_depend>
 +  <exec_depend>pluginlib</exec_depend>
-
+ 
    <export>
 -    <rosdoc config="${prefix}/rosdoc.yaml"/>
 -    <rosbag_storage plugin="${prefix}/encryptor_plugins.xml" />
