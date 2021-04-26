@@ -73,6 +73,6 @@ TEST_F(InfoV2EndToEndTestFixture, info_fails_gracefully_if_storage_format_is_not
     execute_and_wait_until_completion("ros2 bag info test_bag.bag", database_path_);
   auto error_output = internal::GetCapturedStderr();
 
-  EXPECT_THAT(exit_code, Eq(EXIT_SUCCESS));
+  EXPECT_THAT(exit_code, Eq(EXIT_FAILURE));
   EXPECT_THAT(error_output, HasSubstr("Could not read metadata for test_bag.bag"));
 }
