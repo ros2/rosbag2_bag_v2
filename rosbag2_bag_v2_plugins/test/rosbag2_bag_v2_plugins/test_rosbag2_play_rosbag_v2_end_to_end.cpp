@@ -70,8 +70,7 @@ TEST_F(PlayEndToEndTestFixture, play_all) {
   rosbag2_transport::PlayOptions play_options;
   play_options.read_ahead_queue_size = 1000;
 
-  rosbag2_transport::Player player(
-    std::make_unique<rosbag2_cpp::Reader>(), storage_options, play_options);
+  rosbag2_transport::Player player(storage_options, play_options);
   player.play();
 
   SUCCEED();
