@@ -2,6 +2,11 @@
 Changelog for package rosbag2_bag_v2_plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* remove rosbag2 transport (`#43 <https://github.com/ros2/rosbag2_bag_v2/issues/43>`_)
+* Contributors: Karsten Knese
+
 0.1.0 (2021-02-01)
 ------------------
 * Update to the latest rosbag1. (`#40 <https://github.com/ros2/rosbag2_bag_v2/issues/40>`_)

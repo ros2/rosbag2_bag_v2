@@ -2,6 +2,9 @@
 Changelog for package ros1_rosbag_storage_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.0 (2021-02-01)
 ------------------
 * Update to the latest rosbag1. (`#40 <https://github.com/ros2/rosbag2_bag_v2/issues/40>`_)
