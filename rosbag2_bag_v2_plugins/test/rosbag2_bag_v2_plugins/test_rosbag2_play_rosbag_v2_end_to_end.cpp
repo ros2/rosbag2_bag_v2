@@ -106,6 +106,6 @@ TEST_F(PlayEndToEndTestFixture, play_fails_gracefully_if_rosbag_v2_storage_id_is
     execute_and_wait_until_completion("ros2 bag play test_bag.bag", database_path_);
   auto error_output = internal::GetCapturedStderr();
 
-  EXPECT_THAT(exit_code, Eq(EXIT_SUCCESS));
+  EXPECT_THAT(exit_code, Eq(EXIT_FAILURE));
   EXPECT_THAT(error_output, HasSubstr("No storage could be initialized"));
 }
